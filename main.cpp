@@ -12,6 +12,10 @@ void init() {
     
 }
 
+bool checkMoveValid(char from, char to) {
+    return false;
+}
+
 void move() {
     fflush(stdin);
     // Get User Input
@@ -24,9 +28,9 @@ void move() {
     char to;
     scanf("%c", &to);
 
-    if(!checkMoveValid(from, to)) {
+    if(checkMoveValid(from, to) != true) {
         printf("\nDas ist kein valider Zug!");
-        sleep()
+        sleep(1);
     }
 
     finished = true;
