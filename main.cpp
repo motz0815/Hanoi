@@ -9,7 +9,7 @@ static int b[5] = {0,0,0,0,0};
 static int c[5] = {0,0,0,0,0};
 
 int getIndexOfHighestBrick(int x[5]) {
-    // Wenn Stab leer, -1 zurückgeben
+    // If tower empty, return -1
     if(x[0] == 0) return -1;
 
     for(int i = 4; i >= 0; i--) {
@@ -20,15 +20,15 @@ int getIndexOfHighestBrick(int x[5]) {
 }
 
 bool checkMoveValid(int x[5], int y[5]) {
-    // Sind beides nicht dieselben Stäbe?
-    if(x == y) return false;
+    // Are the two towers the same?
+    if(compareArrays(x,y)) return false;
 
-    // Ist ein Stein auf dem ersten Stab?
+    // Is there a block on the first tower?
     if(x[0] == 0) return false;
 
-    // Ist der oberste Stein auf dem 1. Stab kleiner als der oberste des 2. Stabs?
-    if(y[0] != 0) { // Zweiter Stab nicht leer
-        if(x[getIndexOfHighestBrick(x)] >= y[getIndexOfHighestBrick(y)]) { // Will Stein auf kleineren Stein legen
+    // Is the topmost block on the first tower smaller than the topmost block on the second tower?
+    if(y[0] != 0) { // Second tower not empty
+        if(x[getIndexOfHighestBrick(x)] >= y[getIndexOfHighestBrick(y)]) { // User wants to put block on smaller block
             return false;
         }
     }
@@ -57,22 +57,22 @@ int * getArrayFromChar(char x) {
 void move() {
     // User input
     fflush(stdin);
-    printf("Welchen Stein möchtest du aufheben? ");
+    printf("From which tower do you want to lift a block? ");
     char fromChar;
     scanf("%c", &fromChar);
 
     fflush(stdin);
-    printf("\nWohin möchtest du den Stein legen? ");
+    printf("\nWhere do you want to put that block? ");
     char toChar;
     scanf("%c", &toChar);
 
     if(!checkMoveValid(getArrayFromChar(fromChar), getArrayFromChar(toChar))) {
-        printf("\nDas ist kein valider Zug!");
+        printf("\nThat's not a valid move!");
         sleep(1);
         return;
     }
 
-    // Stein bewegen
+    // Move Block
     int indexFrom = getIndexOfHighestBrick(getArrayFromChar(fromChar));
     int indexTo = getIndexOfHighestBrick(getArrayFromChar(toChar)) + 1;
 
@@ -111,12 +111,12 @@ void checkWon() {
 }
 
 int main() {
-    // In die Loop einsteigen
+    // Enter the loop
     do {
         printPic();
         move();
         checkWon();
     } while(!finished);
 
-    printf("Du hast gewonnen! Yay!");
+    printf("You won! Yay!");
 }
