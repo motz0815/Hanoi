@@ -78,9 +78,7 @@ void move() {
 
     // Stein bewegen
     int indexFrom = getIndexOfHighestBrick(getArrayFromChar(fromChar));
-    printf("%d", indexFrom);
     int indexTo = getIndexOfHighestBrick(getArrayFromChar(toChar)) + 1;
-    printf("%d", indexTo);
 
     int valueFrom = getArrayFromChar(fromChar)[indexFrom];
     
