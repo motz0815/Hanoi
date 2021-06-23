@@ -8,10 +8,6 @@ static int a[5] = {5,4,3,2,1};
 static int b[5] = {0,0,0,0,0};
 static int c[5] = {0,0,0,0,0};
 
-void init() {
-    
-}
-
 int getIndexOfHighestBrick(int x[5]) {
     // Wenn Stab leer, -1 zurückgeben
     if(x[0] == 0) return -1;
@@ -115,8 +111,6 @@ void checkWon() {
 }
 
 int main() {
-    init();
-    
     // In die Loop einsteigen
     do {
         printPic();
