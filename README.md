@@ -1,6 +1,6 @@
 # Towers of Hanoi (C)
 ## Purpose
-This is just a little school project, there's not even grading on it.
+This is just a little school project, it's not even gonna be graded.
 
 ## How To Run
 You'll have to compile it yourself using gcc (or similar, whatever you like).
