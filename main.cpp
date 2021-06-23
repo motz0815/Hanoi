@@ -1,5 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+#ifdef _WIN32
+
+#include <windows.h>
+#define clear "cls"
+#define wait Sleep(1000)
+
+#else
+
+#include <unistd.h>
+#define clear "clear"
+#define wait sleep(1)
+
+#endif
+
+
 #include <unistd.h>
 
 bool finished = false;
@@ -17,6 +33,13 @@ int getIndexOfHighestBrick(int x[5]) {
     }
 
     return -1;
+}
+
+bool compareArrays(int x[5], int y[5]) {
+    for(int i = 0; i < 5; i++) {
+        if(x[i] != y[i]) return false;
+    }
+    return true;
 }
 
 bool checkMoveValid(int x[5], int y[5]) {
@@ -68,7 +91,7 @@ void move() {
 
     if(!checkMoveValid(getArrayFromChar(fromChar), getArrayFromChar(toChar))) {
         printf("\nThat's not a valid move!");
-        sleep(1);
+        wait;
         return;
     }
 
@@ -84,7 +107,7 @@ void move() {
 }
 
 void printPic() {
-    system("clear");
+    system(clear);
     printf("\n");
     
     for(int i = 4; i >= 0; i--) {
@@ -95,13 +118,6 @@ void printPic() {
         printf("_");
     }
     printf("\n\tA\tB\tC\n\n");
-}
-
-bool compareArrays(int x[5], int y[5]) {
-    for(int i = 0; i < 5; i++) {
-        if(x[i] != y[i]) return false;
-    }
-    return true;
 }
 
 void checkWon() {
