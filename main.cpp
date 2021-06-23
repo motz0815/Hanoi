@@ -12,13 +12,52 @@ void init() {
     
 }
 
-bool checkMoveValid(char from, char to) {
-    return false;
+int getIndexOfHighestBrick(int x[5]) {
+    // Wenn Stab leer, -1 zurückgeben
+    if(x[0] == 0) return -1;
+
+    for(int i = 0; i < 5; i++) {
+        if(i != 0) {
+            if(x[i] == 0) {
+                return i-1;
+            }
+        } else if(i == 4) {
+            if(x[i] != 0) {
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
+bool checkMoveValid(int x[5], int y[5]) {
+    // Ist ein Stein auf dem ersten Stab?
+    if(x[0] == 0) return false;
+
+    // Ist der oberste Stein auf dem 1. Stab kleiner als der oberste des 2. Stabs?
+
+    // 
+}
+
+int * getArrayFromChar(char x) {
+    switch (x) {
+    case 'a':
+        return a;
+        break;
+    
+    case 'b':
+        return b;
+        break;
+
+    case 'c':
+        return c;
+        break;
+    }
 }
 
 void move() {
     fflush(stdin);
-    // Get User Input
+    // User input
     printf("Welchen Stein möchtest du aufheben? ");
     char from;
     scanf("%c", &from);
@@ -28,9 +67,10 @@ void move() {
     char to;
     scanf("%c", &to);
 
-    if(checkMoveValid(from, to) != true) {
+    if(checkMoveValid(getArrayFromChar(from), getArrayFromChar(to)) != true) {
         printf("\nDas ist kein valider Zug!");
         sleep(1);
+        return;
     }
 
     finished = true;
@@ -50,14 +90,10 @@ void printPic() {
     printf("\n\tA\tB\tC\n\n");
 }
 
-int getIndexOfHighestBrick(int x[5]) {
-
-}
-
 int main() {
     init();
     
-    // Enter Loop
+    // In die Loop einsteigen
     do {
         printPic();
         move();
