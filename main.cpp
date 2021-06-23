@@ -134,5 +134,6 @@ int main() {
         checkWon();
     } while(!finished);
 
+    printPic();
     printf("You won! Yay!");
 }
